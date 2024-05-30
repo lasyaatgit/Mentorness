@@ -1,0 +1,74 @@
+hotel reservation system database sql source code 
+platform used :Oracle apex workspace 
+
+1.SELECT COUNT(*) AS total_reservations
+FROM HOTELD;
+
+2.SELECT type_of_meal_plan, COUNT(*) AS meal_plan_count
+FROM HOTELD
+GROUP BY type_of_meal_plan
+ORDER BY meal_plan_count DESC
+FETCH FIRST 1 ROW ONLY;
+
+3.SELECT AVG(avg_price_per_room) AS average_price_per_room
+FROM HOTELD
+WHERE no_of_children > 0;
+
+4.SELECT COUNT(*) AS total_reservations
+FROM HOTELD
+WHERE EXTRACT(YEAR FROM arrival_date) >= 2000;
+
+5.SELECT room_type_reserved, COUNT(*) AS reservation_count
+FROM HOTELD
+GROUP BY room_type_reserved
+ORDER BY reservation_count DESC
+FETCH FIRST 1 ROW ONLY;
+
+6.SELECT COUNT(*) AS total_weekend_reservations
+FROM HOTELD
+WHERE no_of_weekend_nights > 0;
+
+7.SELECT MAX(lead_time) AS highest_lead_time, MIN(lead_time) AS lowest_lead_time
+FROM HOTELD;
+
+8.SELECT market_segment_type, COUNT(*) AS reservation_count
+FROM HOTELD
+GROUP BY market_segment_type
+ORDER BY reservation_count DESC
+FETCH FIRST 1 ROW ONLY;
+
+9.SELECT COUNT(*) AS confirmed_reservations
+FROM HOTELD
+WHERE booking_status = 'Confirmed';
+
+10.SELECT SUM(no_of_adults) AS total_adults, SUM(no_of_children) AS total_children
+FROM HOTELD;
+
+11.SELECT AVG(no_of_weekend_nights) AS average_weekend_nights
+FROM HOTELD
+WHERE no_of_children > 0;
+
+12.SELECT EXTRACT(MONTH FROM arrival_date) AS month, COUNT(*) AS reservation_count
+FROM HOTELD
+GROUP BY EXTRACT(MONTH FROM arrival_date)
+ORDER BY month;
+
+13.SELECT room_type_reserved, 
+       AVG(no_of_weekend_nights + no_of_week_nights) AS average_total_nights
+FROM HOTELD
+GROUP BY room_type_reserved;
+
+14.SELECT room_type_reserved, COUNT(*) AS reservation_count
+FROM HOTELD
+WHERE no_of_children > 0
+GROUP BY room_type_reserved
+ORDER BY reservation_count DESC
+FETCH FIRST 1 ROW ONLY;
+
+15.SELECT market_segment_type, AVG(avg_price_per_room) AS average_price_per_room
+FROM HOTELD
+GROUP BY market_segment_type
+ORDER BY average_price_per_room DESC
+FETCH FIRST 1 ROW ONLY;
+
+
